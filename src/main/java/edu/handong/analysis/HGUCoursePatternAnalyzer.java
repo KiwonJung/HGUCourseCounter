@@ -53,10 +53,29 @@ public class HGUCoursePatternAnalyzer {
 	 * @return
 	 */
 	private HashMap<String,Student> loadStudentCourseRecords(ArrayList<String> lines) {
+		HashMap<String,Student> tmpHashmap = new HashMap<String,Student>();
 		
-		// TODO: Implement this method
+		for (String line : lines)
+		{
+			String studentId = line.split(", ")[0];
+			Student tmpStudent;
+			
+			if (tmpHashmap.containsKey(studentId))
+			{
+				tmpStudent = tmpHashmap.get(studentId);
+				Course newRecord = new Course(line);
+				tmpStudent.addCourse(newRecord);
+			}
+			else
+			{
+				tmpStudent = new Student(studentId);
+				Course newRecord = new Course(line);
+				tmpStudent.addCourse(newRecord);
+				tmpHashmap.put(studentId, tmpStudent);
+			}
+		}
 		
-		return null; // do not forget to return a proper variable.
+		return tmpHashmap; // do not forget to return a proper variable.
 	}
 
 	/**
@@ -75,6 +94,8 @@ public class HGUCoursePatternAnalyzer {
 	private ArrayList<String> countNumberOfCoursesTakenInEachSemester(Map<String, Student> sortedStudents) {
 		
 		// TODO: Implement this method
+		
+		
 		
 		return null; // do not forget to return a proper variable.
 	}
