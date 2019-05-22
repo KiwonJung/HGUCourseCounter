@@ -10,7 +10,7 @@ import edu.handong.analysis.datamodel.Student;
 import edu.handong.analysise.utils.NotEnoughArgumentException;
 import edu.handong.analysise.utils.Utils;
 
-public class HGUCoursePatternAnalyzer {
+public class HGUCourseCounter {
 
 	private HashMap<String,Student> students;
 	
