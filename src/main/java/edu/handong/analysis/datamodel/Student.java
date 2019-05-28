@@ -36,7 +36,7 @@ public class Student {
 		
 		return tmpHashmap;
 	}
-	public int getNumCourseInNthSementer(int semester) {
+	public int getNumCourseInNthSemester(int semester) {
 		int count = 1;
 		for(Course curCourse : courseTaken) {
 			String curKey = "";

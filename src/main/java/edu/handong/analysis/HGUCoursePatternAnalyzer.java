@@ -2,6 +2,7 @@ package edu.handong.analysis;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -10,7 +11,7 @@ import edu.handong.analysis.datamodel.Student;
 import edu.handong.analysise.utils.NotEnoughArgumentException;
 import edu.handong.analysise.utils.Utils;
 
-public class HGUCourseCounter {
+public class HGUCoursePatternAnalyzer {
 
 	private HashMap<String,Student> students;
 	
@@ -85,18 +86,32 @@ public class HGUCourseCounter {
      * 0001,14,2,8
 	 * ....
 	 * 
-	 * 0001,14,1,9 => this means, 0001 student registered 14 semeters in total. In the first semeter (1), the student took 9 courses.
+	 * 0001,14,1,9 => this means, 0001 student registered 14 semesters in total. In the first semester (1), the student took 9 courses.
 	 * 
 	 * 
 	 * @param sortedStudents
 	 * @return
 	 */
 	private ArrayList<String> countNumberOfCoursesTakenInEachSemester(Map<String, Student> sortedStudents) {
+		ArrayList<String> countCourses = new ArrayList<String>();
 		
-		// TODO: Implement this method
+		String temp = null;
+		
+		Iterator<String> keySet = sortedStudents.keySet().iterator();
+		
+		while(keySet.hasNext()) {
+			String key = keySet.next();
+			Map<String,Integer> sortedSemester = new TreeMap<String,Integer>(sortedStudents.get(key).getSemesterByYearAndSemester());
+			String allSemester = Integer.toString(sortedStudents.get(key).getSemesterByYearAndSemester().size());
+			
+			for(int p=1; p <= sortedSemester.values().size(); p++) {
+				temp = key + "," + allSemester + "," + p + "," + sortedStudents.get(key).getNumCourseInNthSemester(p);
+			}
+		}
 		
 		
+		countCourses.add(temp);
 		
-		return null; // do not forget to return a proper variable.
+		return countCourses; // do not forget to return a proper variable.
 	}
 }

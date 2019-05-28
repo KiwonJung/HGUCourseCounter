@@ -1,8 +1,10 @@
 package edu.handong.analysise.utils;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class Utils {
@@ -35,6 +37,26 @@ public class Utils {
 	
 	
 	public static void writeAFile(ArrayList<String> lines, String targetFileName) {
-		// TODO
+		File wFile = new File("./"+targetFileName);
+		wFile.getParentFile().mkdir();
+		
+		try {
+			BufferedWriter bw = new BufferedWriter(new FileWriter(wFile));
+			wFile.createNewFile();
+			
+			bw.write("StudentID, TotalNumberOfSememstersRegistered, Semester, NumCoursesTakenInTheSememster");
+			bw.newLine();
+			
+			for(String line:lines) {
+				bw.write(line);
+				bw.newLine();
+			}
+			bw.close();
+		}
+		
+		catch (Exception e) {
+			System.out.println(e.getMessage());
+			System.exit(0);
+		}
 	}
 }
